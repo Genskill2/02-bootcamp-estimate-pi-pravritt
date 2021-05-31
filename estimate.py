@@ -1,6 +1,31 @@
 import math
 import unittest
 
+def monte_carlo(n):
+    import random
+    inside_c=0
+    outside_c=0
+    for i in range (1,n+1):
+        point_x= random.random()
+        point_y=random.random()
+        print(point_x,point_y)
+        d= point_x**2+point_y**2
+        dist=d**0.5
+        print(dist)
+        if dist<=1:
+            inside_c=inside_c +1
+        outside_c=outside_c+1
+    print("Circle count Inside=", inside_c, "Outside=",outside_c)
+    ratio=inside_c/outside_c
+    return 4*ratio
+def wallis(n):
+    sum=1
+    for i in range (1, n+1):
+        c1= 4*i*i
+        c2= c1-1
+        sum = sum * (c1/c2)   
+    return 2*sum
+
 class TestWallis(unittest.TestCase):
     def test_low_iters(self):
         for i in range(0, 5):
